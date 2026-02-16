@@ -62,20 +62,23 @@ Bayesian linear regression model - Posterior predictive distribution under a neg
 
 ## How to Use the Program
 ### Running the ARIMAX model:
-
+Run the arimax.R file, which will train and test the arimax model on the macro-indicator dataset and the S&P 500 dataset. The first output you see includes the the reaction curve of expected daily S&P 500 return under each indicator surprise. Another output is each indicator's effect size per 1 standard deviation on the S&P 500 return, showing the direction and magnitude the S&P 500 return is moved by each indicator surprise.
 
 ### Running the Bayesian linear regression model:
-
+Run the bayesian.ipynb file, which trains and tests the Bayesian linear regression model on the macro-indicator and S&P 500 dataset. Same as the arimax model result, the first output includes each indicator's effect size per 1 standard deviation on the S&P 500 return. The second output is the 95% credible interval, showing the 95% range of indicator surprise coefficients. The third output is the probability that each indicator surprise's coefficient is positive, ranging from 0 to 1. Lastly, two plots are generated, showing the posterior predictive distribution of the S&P 500 return under a positive and negative shock of 2 SD from each indicator surprise.
 
 ### How to Interpret the Result:
+The ARIMAX model results show that while macroeconomic surprises do influence daily S&P 500 returns, their effects are small relative to the dominant noise in equity markets. A +1 SD surprise in NFP increases expected returns by roughly 18 bps, core PCE surprises move returns by about 6 bps, and retail sales surprises have near-zero impact. Even though NFP exhibits a statistically meaningful coefficient, the model-implied volatility of 1.07% per day means these shocks translate into only modest shifts in the overall predictive return distribution. Scenario analysis further confirms that even extreme ±2 SD surprises generate
+changes in expected returns that remain small relative to typical market fluctuations, reinforcing the conclusion that macro surprises don’t have much explanatory power for short-horizon equity movements.
 
+For the Bayesian model, the key findings are that NFP surprise has the largest effect size per 1 SD, while the effect size of surprise in PCE and retail sales are minimal, suggesting NFP surprise is the most impactful indicator shock to the S&P return. In addition, the 95% credible interval of NFP surprise doesn’t include 0 and has a positive lower and upper bound, meaning we’re 95% certain that NFP surprise will have a positive impact on the S&P return. For the PCE and retail sales surprise, both of their credible intervals contain zero and have a negative lower bound and positive upper bound. This means for PCE and retail sales surprise, their impact on the S&P return can be positive or negative depending on where the coefficient lands in the interval, or even have no impact on the S&P return at all as the coefficients can potentially be zero. Next, the probability that the coefficient of NFP surprise is positive is 0.994, so it’s almost guaranteed that NFP surprise will have a positive impact on the S&P return. The probability for the coefficient of PCE and retail sales surprise to be positive is only 0.608 and 0.607, which is much lower and means these two indicator surprises can sometimes have positive impact while the other 40% of the time have negative impacts on the S&P return. 
 
 ## Analysis You Can Do With the Results
-- 
-- 
-- 
-- 
-- 
+- Which of the three macro-indicators (NFP, retail sales, PCE) moves the S&P 500 return the most with their surprises?
+- Do all 3 indicator surprises have positive impact on the market return?
+- Which indicator has the least impact on the market return?
+- Is there another indicator whose surprise also impacts the S&P 500 return a lot?
+- In the ARIMAX model result, what's the relationship between the reaction curves and effect size per 1 SD for the 3 indicators?
 
 ## Contributors
 1. Kuan-Chun Chiu (Myself) - beagledirk1@gmail.com
